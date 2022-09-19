@@ -46,9 +46,7 @@ public class CharacterMovement : MonoBehaviour
         playerAnimator.SetFloat("MovingSpeed", movementSqrMagnitude);
     }
 
-
-    //test2
-
+//test3
     void FootstepAudio() {
     }
 }
