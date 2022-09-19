@@ -14,7 +14,8 @@ public class CharacterMovement : MonoBehaviour
     public AudioSource footstepSource;
     public AudioSource bgMusic;
 
-    public Collider collider;
+    public Collider TriggerCollider;
+    public Collider RigidCollider;
 
     //create public array of AudioClips called footstepClips
     public AudioClip[] footstepClips;
@@ -31,7 +32,15 @@ public class CharacterMovement : MonoBehaviour
 
     void OnTriggerExit()
     {
-        //Debug.Log("Trigger Exit: " + < GameObject name > +" : " + < GameObject Position >); //do this
+        Debug.Log("Trigger Exit: " + TriggerCollider.name + " : " + TriggerCollider.transform.position); //do this
+    }
+
+    void OnCollisionEnter(Collision collision){
+      Debug.Log("Collision Enter: " + RigidCollider.name + " : " + collision.contacts[0].point);
+    }
+
+    void OnCollisionStay(){
+      //detect when gameObject with the tag "Impassable" has been collided with
     }
 
     void GetMovementInput() {
@@ -88,4 +97,3 @@ public class CharacterMovement : MonoBehaviour
     }
 
 }
-
