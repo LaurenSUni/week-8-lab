@@ -14,6 +14,8 @@ public class CharacterMovement : MonoBehaviour
     public AudioSource footstepSource;
     public AudioSource bgMusic;
 
+    public Collider collider;
+
     //create public array of AudioClips called footstepClips
     public AudioClip[] footstepClips;
 
@@ -25,6 +27,11 @@ public class CharacterMovement : MonoBehaviour
         CharacterRotation();
         WalkAnimation();
         FootstepAudio();
+    }
+
+    void OnTriggerExit()
+    {
+        //Debug.Log("Trigger Exit: " + < GameObject name > +" : " + < GameObject Position >); //do this
     }
 
     void GetMovementInput() {
@@ -79,5 +86,6 @@ public class CharacterMovement : MonoBehaviour
         }
 
     }
+
 }
 
