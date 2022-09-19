@@ -11,6 +11,12 @@ public class CharacterMovement : MonoBehaviour
     //create a public variable to store that animator of the Player gameObject
     public Animator playerAnimator;
 
+    public AudioSource footstepSource;
+    public AudioSource bgMusic;
+
+    //create public array of AudioClips called footstepClips
+    public AudioClip[] footstepClips;
+
     // Update is called once per frame
     void Update()
     {
@@ -48,6 +54,30 @@ public class CharacterMovement : MonoBehaviour
 
 //test3
     void FootstepAudio() {
+        if (movementSqrMagnitude > 0.25f && footstepSource.isPlaying == false)
+        {
+            //associate the other clip in the footstepClips array with the audio souce (its going to flip-flop from one clip to another)
+            if (footstepSource.clip == footstepClips[0]){
+                footstepSource.clip = footstepClips[1];
+            }
+            else if (footstepSource.clip == footstepClips[1]){
+                footstepSource.clip = footstepClips[0];
+            }
+            //set the volume of the audio source to the movementSqrMagnitude variable
+            footstepSource.volume = movementSqrMagnitude;
+            //play the audio source
+            footstepSource.Play();
+            //"Duck" the background music volume by reducing it to 0.5f
+            bgMusic.volume = 0.5f;
+        }
+        else if (movementSqrMagnitude <= 0.3f && footstepSource.isPlaying == true)
+        {
+            //stop the footstepAudioSource from playing
+            footstepSource.Stop();
+            //return the background music to 1.0
+            bgMusic.volume = 1.0f;
+        }
+
     }
 }
 
